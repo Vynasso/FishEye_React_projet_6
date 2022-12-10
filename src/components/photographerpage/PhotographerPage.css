@@ -1,0 +1,91 @@
+.photographer-header {
+background-color: #FAFAFA;
+    display: flex;
+    justify-content: space-between;
+    height: 250px;
+    padding: 30px;
+}
+
+.photographer-wrapper {
+    padding: 50px;
+}
+
+.photographer-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.name {
+    font-size: 50px;
+    color: #D3573C;
+    margin: 0;
+}
+
+.city {
+    color: #901C1C;
+}
+
+.tagline {
+    color: #525252;
+}
+
+.selector-wrapper {
+    margin-top: 20px;
+    display: flex;
+}
+
+.photographer-button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.photographer-contact-me-button {
+    background-color: #901C1C;
+    color: white;
+    font-size: 17px;
+    height: 70px;
+    width: 130px;
+    border: none;
+    border-radius: 4px;
+}
+
+.photographer-image-container {
+    width: 15rem;
+    height: 15rem;
+    border-radius: 7.5rem;
+    object-fit: cover;
+}
+
+.image-wrapper {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.image {
+    width: 100%;
+    height: 18rem;
+    object-fit: cover;
+}
+
+.unique-image-container {
+    width: 27%;
+    margin: 1rem;
+}
+
+.image-title {
+    width: 100%;
+    justify-content: flex-start;
+    color: #901C1C;
+    font-family: "DM Sans", sans-serif;
+    margin: 0.5rem;
+    font-size:2rem;
+}
+
+.image-information {
+    display: flex;
+    justify-content: space-around;
+}

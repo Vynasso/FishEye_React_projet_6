@@ -1,0 +1,164 @@
+#contact_modal {
+    display: none;
+}
+
+.photograph-header {
+    background-color: #FAFAFA;
+    height: 300px;
+    margin: 0 100px;
+}
+
+.namePhotographer {
+    color: #D3573C;
+    margin: 1rem 0 0 0;
+}
+
+.modal {
+    border-radius: 5px;
+    background-color: #DB8876;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 35px;
+    margin: auto;
+}
+
+.modal header {
+    justify-content: space-between;
+    width: 100%;
+}
+
+.modal header img {
+    cursor: pointer;
+}
+
+.modal header h2 {
+    font-size: 64px;
+    font-weight: normal;
+    text-align: center;
+}
+
+form {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+form label {
+    color: #312E2E;
+    font-size: 36px;
+}
+
+form div {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: self-start;
+    margin-bottom: 26px;
+}
+
+form input {
+    width: 100%;
+    height: 68px;
+    border: none;
+    border-radius: 5px;
+}
+
+main {
+    position: relative;
+}
+
+.photographe-container {
+    margin: 5rem 0 0 0;
+    width: 100%;
+    text-align: center;
+}
+
+.photographe-container a {
+    text-decoration: none;
+}
+
+.photographer-image {
+    width: 20rem;
+    height: 20rem;
+    border-radius: 10rem;
+    object-fit: cover;
+}
+
+.cityPhotographer {
+    color: #D3573C;
+}
+
+.photographer-description {
+    font-size: 1.2rem;
+}
+
+.photographer-price {
+    color: #757575;
+}
+
+body {
+    font-family: "DM Sans", sans-serif;
+    margin: 0;
+}
+
+header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 90px;
+}
+
+h1 {
+    color: #901C1C;
+    margin-right: 100px;
+}
+
+.logo {
+    height: 50px;
+    margin-left: 100px;
+}
+
+.photographer-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 70px;
+}
+
+.photographer-section article {
+    justify-self: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.photographer-section article h2 {
+    color: #D3573C;
+    font-size: 36px;
+}
+
+.photographer-section article img {
+    height: 200px;
+    width: 200px;
+    border-radius: 10rem;
+    object-fit: cover;
+}
+
+.photographer-section p {
+    display: flex;
+    justify-content: center;
+}
+
+
+.photographer-name {
+    color: #D3573C;
+}
+
+.photographer-city {
+    color: #D3573C;
+}
