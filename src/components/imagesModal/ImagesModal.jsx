@@ -1,9 +1,13 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import "./ImagesModal.css";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faChevronLeft, faChevronRight, faXmark} from "@fortawesome/free-solid-svg-icons";
 
 function ImagesModal({setOpenImagesModal, photographerName, image}) {
+
+    useEffect(()=> {
+        console.log(image)
+    },[])
 
 
     return (
@@ -25,6 +29,7 @@ function ImagesModal({setOpenImagesModal, photographerName, image}) {
                         <video className={"image"} src={`/SamplePhotos/${photographerName}/${image.video}`} type="video/mp4"/>
                     }
                     <FontAwesomeIcon style={{fontSize:40,paddingRight:20, color:"#901C1C", cursor:"pointer"}} icon={faChevronRight}/>
+                    <p>{image.title}</p>
                 </div>
             </div>
         </div>

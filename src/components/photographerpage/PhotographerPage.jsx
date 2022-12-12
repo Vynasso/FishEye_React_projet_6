@@ -100,7 +100,7 @@ export default function PhotographerPage() {
                 : null
                 }
                 <div style={imagesModal ? {display:"none"}: {display: "flex"}} className={"selector-wrapper"}>
-                    <p style={{marginRight:15}}>Trier par:</p>
+                    <p style={{marginRight:15, marginTop:15}}>Trier par:</p>
                     <div className={"dropdown"}>
                         <button className={"sort-button"} onClick={handleOpenSortMenu}>Popularité  <FontAwesomeIcon icon={faChevronUp}/></button>
                         {openDropDownMenu ? (
