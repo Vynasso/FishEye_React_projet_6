@@ -12,6 +12,10 @@ form input {
     height: 50px;
 }
 
+.contact-me {
+    color: black;
+}
+
 p {
     margin: 0;
     font-size: 20px;
@@ -30,10 +34,14 @@ p {
     padding: 25px;
 }
 
+.closeModalButton {
+    height:45px;
+    color: white;
+    cursor: pointer;
+}
+
 .modalContainer .title {
-    display: inline-block;
-    text-align: center;
-    margin-top: 10px;
+    display: flex;
     color: black!important;
 }
 
@@ -61,13 +69,13 @@ p {
 .modalContainer .footer {
     flex: 20%;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
 }
 
 .modalContainer .footer button {
     width: 150px;
-    height: 45px;
+    height: 50px;
     margin: 10px;
     border: none;
     background-color: cornflowerblue;
@@ -77,6 +85,6 @@ p {
     cursor: pointer;
 }
 
-#cancelBtn {
-    background-color: crimson;
+#sendMessage {
+    background-color: #901C1C;
 }

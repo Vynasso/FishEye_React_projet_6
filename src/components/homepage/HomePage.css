@@ -113,7 +113,7 @@ header {
     height: 90px;
 }
 
-h1 {
+.photographer-list {
     color: #901C1C;
     margin-right: 100px;
 }
@@ -152,6 +152,7 @@ h1 {
 .photographer-section p {
     display: flex;
     justify-content: center;
+    margin: 5px;
 }
 
 

@@ -35,6 +35,16 @@ background-color: #FAFAFA;
     display: flex;
 }
 
+.photographer-stats {
+    position: fixed;
+    right: 20px;
+    bottom: 0;
+    width: 200px;
+    height:40px;
+    background-color:lightblue;
+    padding: 5px;
+}
+
 .photographer-button-container {
     display: flex;
     justify-content: center;
@@ -49,6 +59,12 @@ background-color: #FAFAFA;
     width: 130px;
     border: none;
     border-radius: 4px;
+    cursor: pointer;
+}
+
+.photographer-contact-me-button:hover {
+    background-color: #D3573C;
+    color: black;
 }
 
 .photographer-image-container {
@@ -88,4 +104,44 @@ background-color: #FAFAFA;
 .image-information {
     display: flex;
     justify-content: space-around;
+}
+
+.dropdown {
+    position: relative;
+}
+
+.menu {
+    position: absolute;
+    list-style-type: none;
+    margin: 5px 0;
+    padding: 0;
+    /*border: 1px solid grey;*/
+    width: 150px;
+    border-radius: 4px!important;
+}
+
+.menu > li {
+    margin: 0;
+    background-color: white;
+}
+
+.menu > li:hover {
+    background-color: lightgray;
+}
+
+.sort-button {
+    height: auto;
+    padding: 15px;
+    font-size: 20px;
+    background-color: #901C1C;
+    color: white;
+    border-bottom: 1px white;
+    cursor:pointer!important;
+    width: 100%;
+}
+
+.menu > li > button {
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
 }

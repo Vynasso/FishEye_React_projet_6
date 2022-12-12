@@ -1,5 +1,7 @@
 import React,{useState} from "react";
 import "./ContactModal.css";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faHeart, faXmark} from "@fortawesome/free-solid-svg-icons";
 
 function ContactModal({ setOpenModal, photographerName }) {
     const [firstName, setFirstName] = useState("");
@@ -10,16 +12,9 @@ function ContactModal({ setOpenModal, photographerName }) {
     return (
         <div className="modalBackground">
             <div className="modalContainer">
-                {/*<div className="titleCloseBtn">*/}
-                {/*    <button onClick={() => {setOpenModal(false);}}>*/}
-                {/*        X*/}
-                {/*    </button>*/}
-                {/*</div>*/}
                 <div className="title">
-                    <h1 style={{color:"black"}}>Contactez-moi {photographerName}</h1>
-                    <button onClick={() => {setOpenModal(false)}}>
-                        X
-                    </button>
+                    <h1 className={"contact-me"} style={{color:"black"}}>Contactez-moi {photographerName}</h1>
+                    <FontAwesomeIcon className={"closeModalButton"} onClick={() => {setOpenModal(false)}} icon={faXmark} />
                 </div>
                 <div className="body">
                     <form style={{gap:10}}>
@@ -27,7 +22,6 @@ function ContactModal({ setOpenModal, photographerName }) {
                         <input
                             value={firstName}
                             onChange={e => setFirstName(e.target.value)}
-                            // placeholder="Prénom"
                             type="text"
                             name="firstName"
                             required
@@ -36,7 +30,6 @@ function ContactModal({ setOpenModal, photographerName }) {
                         <input
                             value={lastName}
                             onChange={e => setLastName(e.target.value)}
-                            // placeholder="Nom"
                             type="text"
                             name="lastName"
                             required
@@ -45,7 +38,6 @@ function ContactModal({ setOpenModal, photographerName }) {
                         <input
                             value={email}
                             onChange={e => setEmail(e.target.value)}
-                            // placeholder="Email"
                             type="email"
                             name="email"
                             required
@@ -55,7 +47,6 @@ function ContactModal({ setOpenModal, photographerName }) {
                             style={{height:150}}
                             value={password}
                             onChange={e => setPassword(e.target.value)}
-                            // placeholder="Votre message"
                             type="text"
                             name="Message"
                             required
@@ -64,11 +55,7 @@ function ContactModal({ setOpenModal, photographerName }) {
                 </div>
                 <div className="footer">
                     <button
-                        onClick={() => {
-                            setOpenModal(false);
-                        }}
-                        id="cancelBtn"
-                    >
+                        onClick={() => {setOpenModal(false);}} id="sendMessage">
                         Envoyer
                     </button>
                 </div>
