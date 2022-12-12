@@ -1,0 +1,27 @@
+.imageModalContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(245, 245, 245, 0.92);
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal-image {
+    width: 100%;
+    height: 750px;
+    object-fit: contain;
+}
+
+.close-button-wrapper {
+    display: flex;
+    justify-content: flex-end;
+    font-size: 40px;
+    margin-right: 100px;
+    padding-top: 40px;
+    color: #901C1C;
+    cursor: pointer;
+}

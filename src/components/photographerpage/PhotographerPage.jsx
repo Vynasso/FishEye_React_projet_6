@@ -5,6 +5,7 @@ import {useParams} from "react-router-dom";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faChevronUp, faHeart} from "@fortawesome/free-solid-svg-icons";
 import ContactModal from "../contactModal/ContactModal.jsx";
+import ImagesModal from "../imagesModal/ImagesModal.jsx";
 
 export default function PhotographerPage() {
     const params = useParams()
@@ -12,7 +13,9 @@ export default function PhotographerPage() {
     const [photographerInformation, setPhotographerInformation] = useState([])
     const [imgNumberOfLikes, setImgNumberOfLikes] = useState(null)
     const [modalOpen, setModalOpen] = useState(false)
+    const [imagesModal, setImagesModal] = useState(false)
     const [openDropDownMenu, setOpenDropDownMenu] = useState(false)
+    const [imagePicked, setImagePicked]= useState("")
 
     const [popularityFilter, setPopularityFilter] = useState(false)
     const [dateFilter, setDateFilter] = useState(false)
@@ -24,7 +27,6 @@ export default function PhotographerPage() {
 
     useEffect(() => {
         let userId = +params.user_id
-        // console.log(data.media)
         let photographer = data.photographers.filter(photographe => photographe.id === userId)
         setPhotographerInformation(photographer[0])
         let uniqueImage = data.media.filter(image => image.photographerId === userId)
@@ -36,13 +38,11 @@ export default function PhotographerPage() {
         setPhotographersImage(uniqueImage)
     },[])
 
-
     // let startDate = Date();
     // let endDate = '2016-01-31';
     // let filteredImageByDate = photographersImage.date.filter(function(item) {
     //     return item.date >= startDate && item.date <= endDate;
     // });
-
 
     const filteringImage = (()=> {
         console.log("check")
@@ -68,6 +68,8 @@ export default function PhotographerPage() {
     return (
         <div>
             {modalOpen && <ContactModal photographerName={photographerInformation.name} setOpenModal={setModalOpen} />}
+            {imagesModal && <ImagesModal setOpenImagesModal={setImagesModal} photographerName={photographerInformation.name} image={imagePicked}/>}
+
             <header>
                 <a href="/">
                     <img src={"logo.png"} alt="logo" className="logo"/>
@@ -83,7 +85,7 @@ export default function PhotographerPage() {
                         </div>
                     </div>
                     <div className={"photographer-button-container"}>
-                        <button onClick={() => {setModalOpen(true);}}
+                        <button onClick={() => {setModalOpen(true)}}
                                 className={"photographer-contact-me-button"}>Contactez-moi</button>
                     </div>
                     <div>
@@ -92,7 +94,12 @@ export default function PhotographerPage() {
                              alt=""/>'
                     </div>
                 </div>
-                <div className={"selector-wrapper"}>
+                {!imagesModal ?
+                <>
+                </>
+                : null
+                }
+                <div style={imagesModal ? {display:"none"}: {display: "flex"}} className={"selector-wrapper"}>
                     <p style={{marginRight:15}}>Trier par:</p>
                     <div className={"dropdown"}>
                         <button className={"sort-button"} onClick={handleOpenSortMenu}>Popularité  <FontAwesomeIcon icon={faChevronUp}/></button>
@@ -106,7 +113,7 @@ export default function PhotographerPage() {
                                 </li>
                             </ul>
                         ) : null}
-                </div>
+                    </div>
                 </div>
                 <div className={"image-wrapper"}>
                     {photographersImage
@@ -115,12 +122,12 @@ export default function PhotographerPage() {
                             <div className={"unique-image-container"} key={image.id}>
                                 {image?.image?.includes("jpg") ? (
                                     <>
-                                        <a>
+                                        <a onClick={() => {setImagesModal(true); setImagePicked(image.image)}}>
                                             <img className={"image"} src={`/SamplePhotos/${photographerInformation.name}/${image.image}`} alt="image"/>
                                         </a>
                                     </>
                                 ) :
-                                        <video className={"image"} src={`/SamplePhotos/${photographerInformation.name}/${image.image}`} type="video/mp4"/>
+                                        <video className={"image"} src={`/SamplePhotos/${photographerInformation.name}/${image?.video}`} type="video/mp4"/>
                                 }
                                 <div className={"image-information"}>
                                     <p className={"image-title"}>{image.title}</p>
@@ -132,7 +139,7 @@ export default function PhotographerPage() {
                             </div>
                         )
                     })}
-                    <div className={"photographer-stats"} style={{display:"flex", width:"20%",borderRadius:4, padding:10, alignItems:"center",height:40, backgroundColor:"#D3573C"}}>
+                    <div className={"photographer-stats"} style={imagesModal ? {display:"none"} : {display:"flex", width:"20%",borderRadius:4, padding:10, alignItems:"center",height:40, backgroundColor:"#D3573C"}}>
                         <p style={{flex:1}}>{imgNumberOfLikes}<FontAwesomeIcon style={{marginLeft:5}} icon={faHeart} /></p>
                         <p>{photographerInformation.price}€ / jour</p>
                     </div>
