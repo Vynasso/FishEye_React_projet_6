@@ -25,3 +25,15 @@
     color: #901C1C;
     cursor: pointer;
 }
+
+.video {
+    width: 80%;
+    object-fit: cover;
+    min-height: 25rem;
+}
+.swipe-button {
+    outline-width: 0;
+}
+.swipe-button:focus{
+    outline: none;
+}

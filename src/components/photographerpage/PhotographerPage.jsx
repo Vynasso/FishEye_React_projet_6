@@ -9,17 +9,13 @@ import ImagesModal from "../imagesModal/ImagesModal.jsx";
 
 export default function PhotographerPage() {
     const params = useParams()
-    const [photographersImage, setPhotographersImage] = useState([])
+    let [photographersImage, setPhotographersImage] = useState([])
     const [photographerInformation, setPhotographerInformation] = useState([])
     const [imgNumberOfLikes, setImgNumberOfLikes] = useState(null)
     const [modalOpen, setModalOpen] = useState(false)
     const [imagesModal, setImagesModal] = useState(false)
     const [openDropDownMenu, setOpenDropDownMenu] = useState(false)
     const [imagePicked, setImagePicked]= useState("")
-
-    const [popularityFilter, setPopularityFilter] = useState(false)
-    const [dateFilter, setDateFilter] = useState(false)
-    const [titleFilter, setTitleFilter] = useState(false)
 
     const handleOpenSortMenu = () => {
         setOpenDropDownMenu(!openDropDownMenu);
@@ -38,37 +34,45 @@ export default function PhotographerPage() {
         setPhotographersImage(uniqueImage)
     },[])
 
-    // let startDate = Date();
-    // let endDate = '2016-01-31';
-    // let filteredImageByDate = photographersImage.date.filter(function(item) {
-    //     return item.date >= startDate && item.date <= endDate;
-    // });
 
-    const filteringImage = (()=> {
-        console.log("check")
-        if(!popularityFilter || !dateFilter || !titleFilter) return photographersImage
-        if(popularityFilter) return photographersImage.likes.sort(function(a,b){
-            return a - b;
-        })
-        if(dateFilter) return photographersImage.date.sort(function (imageA,imageB){
-            return imageA - imageB;
-        })
-        if(titleFilter) return photographersImage.title.sort(function(titleA, titleB){
-            return titleA - titleB
-        })
-    })
 
-    const sortByPopularity = (()=> {
-        console.log("check")
-        const sortedImage = [...photographersImage].sort((a,b)=>
-        a > b ? 1 : -1);
-        setPhotographersImage(sortedImage)
-    })
+    function sortByPopularity(photographersImage) {
+        return photographersImage.sort((a, b) => b.likes - a.likes);
+    }
+
+    function sortByDate(photographersImage) {
+        photographersImage.sort((a, b) => {
+            const dateA = new Date(a.date);
+            const dateB = new Date(b.date);
+            return dateA - dateB;
+        });
+    }
+
+    function sortByTitle(photographersImage) {
+        return photographersImage.sort((a, b) => {
+            if (a.title < b.title) return -1;
+            if (a.title > b.title) return 1;
+            return 0;
+        });
+    }
+
 
     return (
         <div>
-            {modalOpen && <ContactModal photographerName={photographerInformation.name} setOpenModal={setModalOpen} />}
-            {imagesModal && <ImagesModal setOpenImagesModal={setImagesModal} photographerName={photographerInformation.name} image={imagePicked}/>}
+            {modalOpen &&
+                <ContactModal
+                photographerName={photographerInformation.name}
+                setOpenModal={setModalOpen}
+                aria-label="Contact form for photographer"
+                />}
+            {imagesModal &&
+                <ImagesModal
+                setOpenImagesModal={setImagesModal}
+                photographerName={photographerInformation.name}
+                allImages={photographersImage}
+                image={imagePicked}
+                />}
+
 
             <header>
                 <a href="/">
@@ -101,39 +105,42 @@ export default function PhotographerPage() {
                 }
                 <div style={imagesModal ? {display:"none"}: {display: "flex"}} className={"selector-wrapper"}>
                     <p style={{marginRight:15, marginTop:15}}>Trier par:</p>
-                    <div className={"dropdown"}>
-                        <button className={"sort-button"} onClick={handleOpenSortMenu}>Popularité  <FontAwesomeIcon icon={faChevronUp}/></button>
+                    <div className={"dropdown"} onClick={handleOpenSortMenu} aria-label="Open dropdown menu for sorting images" title="Sort images by popularity, date, or title">
+                        <button className={"sort-button"} onClick={()=> sortByPopularity(photographersImage)}>Popularité  <FontAwesomeIcon icon={faChevronUp}/></button>
                         {openDropDownMenu ? (
                             <ul className="menu">
                                 <li className="menu-item">
-                                    <button className={"sort-button"}>Date</button>
+                                    <button onClick={()=> sortByDate(photographersImage)} className={"sort-button"}>Date</button>
                                 </li>
                                 <li className="menu-item">
-                                    <button className={"sort-button"}>Titre</button>
+                                    <button onClick={()=> sortByTitle(photographersImage)} className={"sort-button"}>Titre</button>
                                 </li>
                             </ul>
                         ) : null}
                     </div>
                 </div>
                 <div className={"image-wrapper"}>
-                    {photographersImage
-                        .map((image) => {
+                    {photographersImage.map((image) => {
+
                         return (
                             <div className={"unique-image-container"} key={image.id}>
                                 {image?.image?.includes("jpg") ? (
                                     <>
                                         <a onClick={() => {setImagesModal(true); setImagePicked(image.image)}}>
-                                            <img className={"image"} src={`/SamplePhotos/${photographerInformation.name}/${image.image}`} alt="image"/>
+                                            <img className={"image"} src={`/SamplePhotos/${photographerInformation.name}/${image.image}`} aria-label={image.title} alt="image"/>
                                         </a>
                                     </>
                                 ) :
-                                        <video className={"image"} src={`/SamplePhotos/${photographerInformation.name}/${image?.video}`} type="video/mp4"/>
+                                        <video className={"image"} src={`/SamplePhotos/${photographerInformation.name}/${image?.video}`} aria-label={image.title} type="video/mp4"/>
                                 }
                                 <div className={"image-information"}>
                                     <p className={"image-title"}>{image.title}</p>
                                     <div style={{display:"flex", alignItems:"center", color:"#D3573C"}}>
                                         <p style={{marginRight:5}}>{image.likes}</p>
-                                        <FontAwesomeIcon onClick={()=> setImgNumberOfLikes(imgNumberOfLikes + 1)} icon={faHeart} />
+                                        <FontAwesomeIcon onClick={() => {
+                                            setImgNumberOfLikes(imgNumberOfLikes + 1);
+                                            image.likes += 1;
+                                        }} aria-label="Like image" icon={faHeart} />
                                     </div>
                                 </div>
                             </div>

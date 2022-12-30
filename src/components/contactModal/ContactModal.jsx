@@ -1,29 +1,32 @@
-import React,{useState} from "react";
+import React, {useState} from "react";
 import "./ContactModal.css";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faHeart, faXmark} from "@fortawesome/free-solid-svg-icons";
 
-function ContactModal({ setOpenModal, photographerName }) {
+function ContactModal({setOpenModal, photographerName}) {
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+    const [message, setMessage] = useState("");
 
     return (
         <div className="modalBackground">
             <div className="modalContainer">
                 <div className="title">
-                    <h1 className={"contact-me"} style={{color:"black"}}>Contactez-moi {photographerName}</h1>
-                    <FontAwesomeIcon className={"closeModalButton"} onClick={() => {setOpenModal(false)}} icon={faXmark} />
+                    <h1 className={"contact-me"} style={{color: "black"}}>Contactez-moi {photographerName}</h1>
+                    <FontAwesomeIcon className={"closeModalButton"} aria-label="Close contact form" onClick={() => {
+                        setOpenModal(false)
+                    }} icon={faXmark}/>
                 </div>
                 <div className="body">
-                    <form style={{gap:10}}>
+                    <form style={{gap: 10}}>
                         <p>Prénom</p>
                         <input
                             value={firstName}
                             onChange={e => setFirstName(e.target.value)}
                             type="text"
                             name="firstName"
+                            aria-label="First name"
                             required
                         />
                         <p>Nom</p>
@@ -32,6 +35,7 @@ function ContactModal({ setOpenModal, photographerName }) {
                             onChange={e => setLastName(e.target.value)}
                             type="text"
                             name="lastName"
+                            aria-label="Last name"
                             required
                         />
                         <p>Email</p>
@@ -40,22 +44,35 @@ function ContactModal({ setOpenModal, photographerName }) {
                             onChange={e => setEmail(e.target.value)}
                             type="email"
                             name="email"
+                            aria-label="Email"
                             required
                         />
                         <p>Message</p>
-                        <input
-                            style={{height:150}}
-                            value={password}
-                            onChange={e => setPassword(e.target.value)}
-                            type="text"
+                        {/*<input*/}
+                        {/*    style={{height:150}}*/}
+                        {/*    value={password}*/}
+                        {/*    onChange={e => setPassword(e.target.value)}*/}
+                        {/*    type="text"*/}
+                        {/*    name="Message"*/}
+                        {/*    aria-label="Message"*/}
+                        {/*    required*/}
+                        {/*/>*/}
+                        <textarea
+                            style={{height: 150, width: "100%", borderRadius: 4}}
+                            value={message}
+                            onChange={e => setMessage(e.target.value)}
                             name="Message"
+                            rows={10}
                             required
-                        />
+                        ></textarea>
                     </form>
                 </div>
                 <div className="footer">
                     <button
-                        onClick={() => {setOpenModal(false);}} id="sendMessage">
+                        aria-label="Send message"
+                        onClick={() => {
+                            setOpenModal(false);
+                        }} id="sendMessage">
                         Envoyer
                     </button>
                 </div>

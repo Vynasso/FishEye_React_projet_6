@@ -145,3 +145,7 @@ background-color: #FAFAFA;
     text-align: left;
     cursor: pointer;
 }
+
+.menu-item button :hover{
+    cursor: pointer;
+}
