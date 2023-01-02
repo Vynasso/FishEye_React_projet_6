@@ -40,10 +40,12 @@ export default function PhotographerPage() {
 
 
     function sortByPopularity(photographersImage) {
+        console.log("popularity")
         return photographersImage.sort((a, b) => b.likes - a.likes);
     }
 
     function sortByDate(photographersImage) {
+        console.log("date")
         photographersImage.sort((a, b) => {
             const dateA = new Date(a.date);
             const dateB = new Date(b.date);
@@ -52,6 +54,7 @@ export default function PhotographerPage() {
     }
 
     function sortByTitle(photographersImage) {
+        console.log("title")
         return photographersImage.sort((a, b) => {
             if (a.title < b.title) return -1;
             if (a.title > b.title) return 1;
@@ -153,15 +156,15 @@ export default function PhotographerPage() {
                         zIndex: '1',
                         display: 'block'
                     }}>
-                        <li style={{ listStyle: 'none', margin: '8px 0' }}>
+                        <li style={{ listStyle: 'none', margin: '8px 0' }} onClick={()=> sortByPopularity(photographersImage)}>
                             <div style={{ color: '#000', fontSize: '13px', fontWeight: '600' }}>Popularité</div>
                             <div style={{ height: '1px', width: '100%', backgroundColor: '#000', margin: '6px 0' }} />
                         </li>
-                        <li style={{ listStyle: 'none', margin: '8px 0' }}>
+                        <li style={{ listStyle: 'none', margin: '8px 0' }} onClick={()=> sortByDate(photographersImage)}>
                             <div style={{ color: '#000', fontSize: '13px', fontWeight: '600' }}>Date</div>
                             <div style={{ height: '1px', width: '100%', backgroundColor: '#000', margin: '6px 0' }} />
                         </li>
-                        <li style={{ listStyle: 'none', margin: '8px 0' }}>
+                        <li style={{ listStyle: 'none', margin: '8px 0' }} onClick={()=> sortByTitle(photographersImage)}>
                             <div style={{ color: '#000', fontSize: '13px', fontWeight: '600' }}>Titre</div>
                             <div style={{ height: '1px', width: '100%', backgroundColor: '#000', margin: '6px 0' }} />
                         </li>
