@@ -220,8 +220,8 @@ export default function PhotographerPage() {
                                 }}/>
                             </li>
                             <li
-                                onMouseEnter={() => setDisplayMenu(true)}
-                                onMouseLeave={() => setDisplayMenu(false)}
+                                // onMouseEnter={() => setDisplayMenu(true)}
+                                // onMouseLeave={() => setDisplayMenu(false)}
                                 style={{listStyle: 'none', margin: '8px 0'}}
                                 onClick={() => sortByDate(photographersImage)}>
                                 <div
@@ -235,8 +235,8 @@ export default function PhotographerPage() {
                                 }}/>
                             </li>
                             <li
-                                onMouseEnter={() => setDisplayMenu(true)}
-                                onMouseLeave={() => setDisplayMenu(false)}
+                                // onMouseEnter={() => setDisplayMenu(true)}
+                                // onMouseLeave={() => setDisplayMenu(false)}
                                 style={{listStyle: 'none', margin: '8px 0'}}
                                 onClick={() => sortByTitle(photographersImage)}>
                                 <div style={{

@@ -147,6 +147,10 @@
     cursor: pointer;
 }
 
+ul > li > div {
+    cursor: pointer;
+}
+
 .menu-item button :hover {
     cursor: pointer;
 }
