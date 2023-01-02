@@ -17,7 +17,7 @@ export default function PhotographerPage() {
     const [openDropDownMenu, setOpenDropDownMenu] = useState(false)
     const [imagePicked, setImagePicked]= useState("")
 
-    const [displayMenu, setDisplayMenu] = useState(false);
+    const [displayMenu, setDisplayMenu] = useState(true);
 
 
     const handleOpenSortMenu = () => {
@@ -123,41 +123,51 @@ export default function PhotographerPage() {
                 {/*    </div>*/}
                 {/*</div>*/}
                 <div style={{ display: 'inline-block' }}>
-                    <div
-                        onMouseEnter={() => setDisplayMenu(true)}
-                        onMouseLeave={() => setDisplayMenu(false)}
-                        style={{
-                            cursor: 'pointer',
-                            backgroundColor: '#3498db',
-                            color: 'white',
-                            borderRadius: '4px',
-                            padding: '8px',
-                            display: 'inline-block',
-                            fontSize: '14px',
-                            fontWeight: 'bold'
-                        }}
-                    >
-                        Trier par
-                    </div>
-                    {displayMenu ? (
-                        <ul style={{
-                            position: 'absolute',
-                            top: '40px',
-                            left: '0',
-                            backgroundColor: '#f9f9f9',
-                            minWidth: '160px',
-                            boxShadow: '0px 8px 16px 0px rgba(0,0,0,0.2)',
-                            padding: '12px 16px',
-                            zIndex: '1',
-                            display: 'block'
-                        }}>
-                            <li style={{ listStyle: 'none', margin: '8px 0' }}>Option 1</li>
-                            <li style={{ listStyle: 'none', margin: '8px 0' }}>Option 2</li>
-                            <li style={{ listStyle: 'none', margin: '8px 0' }}>Option 3</li>
-                            <li style={{ listStyle: 'none', margin: '8px 0' }}>Option 4</li>
-                        </ul>
-                    ) : null}
+                <div
+                    onMouseEnter={() => setDisplayMenu(true)}
+                    onMouseLeave={() => setDisplayMenu(false)}
+                    style={{
+                        cursor: 'pointer',
+                        backgroundColor: '#3498db',
+                        color: 'white',
+                        borderRadius: '4px',
+                        padding: '8px',
+                        display: 'inline-block',
+                        fontSize: '14px',
+                        fontWeight: 'bold'
+                    }}
+                >
+                    Trier par
                 </div>
+                {displayMenu ? (
+                    <ul style={{
+                        position: 'absolute',
+                        // top: '40px',
+                        // left: '0',
+                        top: "438px",
+                        left: "165px",
+                        backgroundColor: '#f9f9f9',
+                        minWidth: '160px',
+                        boxShadow: '0px 8px 16px 0px rgba(0,0,0,0.2)',
+                        padding: '12px 16px',
+                        zIndex: '1',
+                        display: 'block'
+                    }}>
+                        <li style={{ listStyle: 'none', margin: '8px 0' }}>
+                            <div style={{ color: '#000', fontSize: '13px', fontWeight: '600' }}>Popularité</div>
+                            <div style={{ height: '1px', width: '100%', backgroundColor: '#000', margin: '6px 0' }} />
+                        </li>
+                        <li style={{ listStyle: 'none', margin: '8px 0' }}>
+                            <div style={{ color: '#000', fontSize: '13px', fontWeight: '600' }}>Date</div>
+                            <div style={{ height: '1px', width: '100%', backgroundColor: '#000', margin: '6px 0' }} />
+                        </li>
+                        <li style={{ listStyle: 'none', margin: '8px 0' }}>
+                            <div style={{ color: '#000', fontSize: '13px', fontWeight: '600' }}>Titre</div>
+                            <div style={{ height: '1px', width: '100%', backgroundColor: '#000', margin: '6px 0' }} />
+                        </li>
+                    </ul>
+                ) : null}
+            </div>
                 <div className={"image-wrapper"}>
                     {photographersImage.map((image) => {
 
