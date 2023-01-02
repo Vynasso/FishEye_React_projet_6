@@ -1,5 +1,5 @@
 .photographer-header {
-background-color: #FAFAFA;
+    background-color: #FAFAFA;
     display: flex;
     justify-content: space-between;
     height: 250px;
@@ -40,8 +40,8 @@ background-color: #FAFAFA;
     right: 20px;
     bottom: 0;
     width: 200px;
-    height:40px;
-    background-color:lightblue;
+    height: 40px;
+    background-color: lightblue;
     padding: 5px;
 }
 
@@ -85,6 +85,7 @@ background-color: #FAFAFA;
     width: 100%;
     height: 18rem;
     object-fit: cover;
+    border-radius: 4px;
 }
 
 .unique-image-container {
@@ -98,7 +99,7 @@ background-color: #FAFAFA;
     color: #901C1C;
     font-family: "DM Sans", sans-serif;
     margin: 0.5rem;
-    font-size:2rem;
+    font-size: 2rem;
 }
 
 .image-information {
@@ -117,7 +118,7 @@ background-color: #FAFAFA;
     padding: 0;
     /*border: 1px solid grey;*/
     width: 150px;
-    border-radius: 4px!important;
+    border-radius: 4px !important;
 }
 
 .menu > li {
@@ -136,7 +137,7 @@ background-color: #FAFAFA;
     background-color: #901C1C;
     color: white;
     border-bottom: 1px white;
-    cursor:pointer!important;
+    cursor: pointer !important;
     width: 100%;
 }
 
@@ -146,6 +147,6 @@ background-color: #FAFAFA;
     cursor: pointer;
 }
 
-.menu-item button :hover{
+.menu-item button :hover {
     cursor: pointer;
 }

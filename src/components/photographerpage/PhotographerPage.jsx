@@ -15,7 +15,7 @@ export default function PhotographerPage() {
     const [modalOpen, setModalOpen] = useState(false)
     const [imagesModal, setImagesModal] = useState(false)
     const [openDropDownMenu, setOpenDropDownMenu] = useState(false)
-    const [imagePicked, setImagePicked]= useState("")
+    const [imagePicked, setImagePicked] = useState("")
 
     const [displayMenu, setDisplayMenu] = useState(true);
 
@@ -30,36 +30,71 @@ export default function PhotographerPage() {
         setPhotographerInformation(photographer[0])
         let uniqueImage = data.media.filter(image => image.photographerId === userId)
         let numberOfLikes = 0
-        for (let i = 0; i < uniqueImage.length; i++){
+        for (let i = 0; i < uniqueImage.length; i++) {
             numberOfLikes += uniqueImage[i].likes
         }
         setImgNumberOfLikes(numberOfLikes)
         setPhotographersImage(uniqueImage)
-    },[])
+    }, [])
 
 
+    // function sortByPopularity(photographersImage) {
+    //     console.log("popularity")
+    //     return photographersImage.sort((a, b) => b.likes - a.likes);
+    // }
+    //
+    // function sortByDate(photographersImage) {
+    //     console.log("date")
+    //     photographersImage.sort((a, b) => {
+    //         const dateA = new Date(a.date);
+    //         const dateB = new Date(b.date);
+    //         return dateA - dateB;
+    //     });
+    // }
+    //
+    // function sortByTitle(photographersImage) {
+    //     console.log("title")
+    //     return photographersImage.sort((a, b) => {
+    //         if (a.title < b.title) return -1;
+    //         if (a.title > b.title) return 1;
+    //         return 0;
+    //     });
+    // }
 
     function sortByPopularity(photographersImage) {
         console.log("popularity")
-        return photographersImage.sort((a, b) => b.likes - a.likes);
+        let sortedArray = photographersImage.sort((a, b) => b.likes - a.likes);
+        setPhotographersImage(sortedArray);
     }
 
     function sortByDate(photographersImage) {
         console.log("date")
-        photographersImage.sort((a, b) => {
+        let sortedArray = photographersImage.sort((a, b) => {
             const dateA = new Date(a.date);
             const dateB = new Date(b.date);
             return dateA - dateB;
         });
+        setPhotographersImage(sortedArray);
     }
 
     function sortByTitle(photographersImage) {
         console.log("title")
-        return photographersImage.sort((a, b) => {
+        let sortedArray = photographersImage.sort((a, b) => {
             if (a.title < b.title) return -1;
             if (a.title > b.title) return 1;
             return 0;
         });
+        setPhotographersImage(sortedArray);
+    }
+
+    function toggleModal() {
+        setModalOpen(!modalOpen)
+        document.body.classList.toggle("modal-open")
+    }
+
+    function toggleImageModal() {
+        setImagesModal(!imagesModal)
+        document.body.classList.toggle("modal-open")
     }
 
 
@@ -67,16 +102,16 @@ export default function PhotographerPage() {
         <div>
             {modalOpen &&
                 <ContactModal
-                photographerName={photographerInformation.name}
-                setOpenModal={setModalOpen}
-                aria-label="Contact form for photographer"
+                    photographerName={photographerInformation.name}
+                    setOpenModal={toggleModal}
+                    aria-label="Contact form for photographer"
                 />}
             {imagesModal &&
                 <ImagesModal
-                setOpenImagesModal={setImagesModal}
-                photographerName={photographerInformation.name}
-                allImages={photographersImage}
-                image={imagePicked}
+                    setOpenImagesModal={toggleImageModal}
+                    photographerName={photographerInformation.name}
+                    allImages={photographersImage}
+                    image={imagePicked}
                 />}
 
 
@@ -95,8 +130,11 @@ export default function PhotographerPage() {
                         </div>
                     </div>
                     <div className={"photographer-button-container"}>
-                        <button onClick={() => {setModalOpen(true)}}
-                                className={"photographer-contact-me-button"}>Contactez-moi</button>
+                        <button onClick={() => {
+                            toggleModal()
+                        }}
+                                className={"photographer-contact-me-button"}>Contactez-moi
+                        </button>
                     </div>
                     <div>
                         <img className={"photographer-image-container"}
@@ -105,101 +143,159 @@ export default function PhotographerPage() {
                     </div>
                 </div>
                 {!imagesModal ?
-                <>
-                </>
-                : null
+                    <>
+                    </>
+                    : null
                 }
-                {/*<div style={imagesModal ? {display:"none"}: {display: "flex"}} className={"selector-wrapper"}>*/}
-                {/*    <p style={{marginRight:15, marginTop:15}}>Trier par:</p>*/}
-                {/*    <div className={"dropdown"} onClick={handleOpenSortMenu} aria-label="Open dropdown menu for sorting images" title="Sort images by popularity, date, or title">*/}
-                {/*        <button className={"sort-button"} onClick={()=> sortByPopularity(photographersImage)}>Popularité  <FontAwesomeIcon icon={faChevronUp}/></button>*/}
+                {/*<div style={imagesModal ? {display: "none"} : {display: "flex"}} className={"selector-wrapper"}>*/}
+                {/*    <p style={{marginRight: 15, marginTop: 15}}>Trier par:</p>*/}
+                {/*    <div className={"dropdown"} onClick={handleOpenSortMenu}
+                         aria-label="Open dropdown menu for sorting images"
+                         title="Sort images by popularity, date, or title">*/}
+                {/*        <button className={"sort-button"}
+                                onClick={() => sortByPopularity(photographersImage)}>Popularité <FontAwesomeIcon
+                            icon={faChevronUp}/></button>*/}
                 {/*        {openDropDownMenu ? (*/}
                 {/*            <ul className="menu">*/}
                 {/*                <li className="menu-item">*/}
-                {/*                    <button onClick={()=> sortByDate(photographersImage)} className={"sort-button"}>Date</button>*/}
+                {/*                    <button onClick={() => sortByDate(photographersImage)}
+                                            className={"sort-button"}>Date
+                                    </button>*/}
                 {/*                </li>*/}
                 {/*                <li className="menu-item">*/}
-                {/*                    <button onClick={()=> sortByTitle(photographersImage)} className={"sort-button"}>Titre</button>*/}
+                {/*                    <button onClick={() => sortByTitle(photographersImage)}
+                                            className={"sort-button"}>Titre
+                                    </button>*/}
                 {/*                </li>*/}
                 {/*            </ul>*/}
                 {/*        ) : null}*/}
                 {/*    </div>*/}
                 {/*</div>*/}
-                <div style={{ display: 'inline-block' }}>
-                <div
-                    onMouseEnter={() => setDisplayMenu(true)}
-                    onMouseLeave={() => setDisplayMenu(false)}
-                    style={{
-                        cursor: 'pointer',
-                        backgroundColor: '#3498db',
-                        color: 'white',
-                        borderRadius: '4px',
-                        padding: '8px',
-                        display: 'inline-block',
-                        fontSize: '14px',
-                        fontWeight: 'bold'
-                    }}
-                >
-                    Trier par
+                <div style={{display: 'inline-block'}}>
+                    <div
+                        style={{
+                            cursor: 'pointer',
+                            color: 'black',
+                            borderRadius: '4px',
+                            padding: '8px',
+                            display: 'inline-block',
+                            fontSize: '14px',
+                            fontWeight: 'bold'
+                        }}
+                    >
+                        Trier par
+                    </div>
+                    {displayMenu ? (
+                        <ul
+                            style={{
+                                position: 'absolute',
+                                // top: '40px',
+                                // left: '0',
+                                top: "438px",
+                                left: "165px",
+                                backgroundColor: '#901C1C',
+                                minWidth: '120px',
+                                boxShadow: '0px 8px 16px 0px rgba(0,0,0,0.2)',
+                                padding: '12px 16px',
+                                zIndex: '1',
+                                display: 'block',
+                                borderRadius: "4px"
+                            }}>
+                            <li
+                                style={{listStyle: 'none', margin: '8px 0'}}
+                                onClick={() => sortByPopularity(photographersImage)}>
+                                <div style={{
+                                    color: '#FAFAFA',
+                                    fontSize: '16px',
+                                    fontWeight: '600',
+                                    padding: "6px"
+                                }}>Popularité<FontAwesomeIcon
+                                    style={{marginLeft: 10}} icon={faChevronUp}/>
+                                </div>
+                                <div style={{
+                                    height: '1px',
+                                    width: '100%',
+                                    backgroundColor: '#FAFAFA',
+                                    margin: '6px 0'
+                                }}/>
+                            </li>
+                            <li
+                                onMouseEnter={() => setDisplayMenu(true)}
+                                onMouseLeave={() => setDisplayMenu(false)}
+                                style={{listStyle: 'none', margin: '8px 0'}}
+                                onClick={() => sortByDate(photographersImage)}>
+                                <div
+                                    style={{color: '#FAFAFA', fontSize: '16px', fontWeight: '600', padding: "6px"}}>Date
+                                </div>
+                                <div style={{
+                                    height: '1px',
+                                    width: '100%',
+                                    backgroundColor: '#FAFAFA',
+                                    margin: '6px 0'
+                                }}/>
+                            </li>
+                            <li
+                                onMouseEnter={() => setDisplayMenu(true)}
+                                onMouseLeave={() => setDisplayMenu(false)}
+                                style={{listStyle: 'none', margin: '8px 0'}}
+                                onClick={() => sortByTitle(photographersImage)}>
+                                <div style={{
+                                    color: '#FAFAFA',
+                                    fontSize: '16px',
+                                    fontWeight: '600',
+                                    marginLeft: "4px",
+                                    paddingTop: "6px"
+                                }}>Titre
+                                </div>
+                            </li>
+                        </ul>
+                    ) : null}
                 </div>
-                {displayMenu ? (
-                    <ul style={{
-                        position: 'absolute',
-                        // top: '40px',
-                        // left: '0',
-                        top: "438px",
-                        left: "165px",
-                        backgroundColor: '#f9f9f9',
-                        minWidth: '160px',
-                        boxShadow: '0px 8px 16px 0px rgba(0,0,0,0.2)',
-                        padding: '12px 16px',
-                        zIndex: '1',
-                        display: 'block'
-                    }}>
-                        <li style={{ listStyle: 'none', margin: '8px 0' }} onClick={()=> sortByPopularity(photographersImage)}>
-                            <div style={{ color: '#000', fontSize: '13px', fontWeight: '600' }}>Popularité</div>
-                            <div style={{ height: '1px', width: '100%', backgroundColor: '#000', margin: '6px 0' }} />
-                        </li>
-                        <li style={{ listStyle: 'none', margin: '8px 0' }} onClick={()=> sortByDate(photographersImage)}>
-                            <div style={{ color: '#000', fontSize: '13px', fontWeight: '600' }}>Date</div>
-                            <div style={{ height: '1px', width: '100%', backgroundColor: '#000', margin: '6px 0' }} />
-                        </li>
-                        <li style={{ listStyle: 'none', margin: '8px 0' }} onClick={()=> sortByTitle(photographersImage)}>
-                            <div style={{ color: '#000', fontSize: '13px', fontWeight: '600' }}>Titre</div>
-                            <div style={{ height: '1px', width: '100%', backgroundColor: '#000', margin: '6px 0' }} />
-                        </li>
-                    </ul>
-                ) : null}
-            </div>
                 <div className={"image-wrapper"}>
                     {photographersImage.map((image) => {
 
                         return (
                             <div className={"unique-image-container"} key={image.id}>
                                 {image?.image?.includes("jpg") ? (
-                                    <>
-                                        <a onClick={() => {setImagesModal(true); setImagePicked(image.image)}}>
-                                            <img className={"image"} src={`/SamplePhotos/${photographerInformation.name}/${image.image}`} aria-label={image.title} alt="image"/>
-                                        </a>
-                                    </>
-                                ) :
-                                        <video className={"image"} src={`/SamplePhotos/${photographerInformation.name}/${image?.video}`} aria-label={image.title} type="video/mp4"/>
+                                        <>
+                                            <a onClick={() => {
+                                                toggleImageModal();
+                                                setImagePicked(image.image)
+                                            }}>
+                                                <img className={"image"}
+                                                     src={`/SamplePhotos/${photographerInformation.name}/${image.image}`}
+                                                     aria-label={image.title} alt="image"/>
+                                            </a>
+                                        </>
+                                    ) :
+                                    <video className={"image"}
+                                           src={`/SamplePhotos/${photographerInformation.name}/${image?.video}`}
+                                           aria-label={image.title} type="video/mp4"/>
                                 }
                                 <div className={"image-information"}>
                                     <p className={"image-title"}>{image.title}</p>
-                                    <div style={{display:"flex", alignItems:"center", color:"#D3573C"}}>
-                                        <p style={{marginRight:5}}>{image.likes}</p>
+                                    <div style={{display: "flex", alignItems: "center", color: "#D3573C"}}>
+                                        <p style={{marginRight: 5}}>{image.likes}</p>
                                         <FontAwesomeIcon onClick={() => {
                                             setImgNumberOfLikes(imgNumberOfLikes + 1);
                                             image.likes += 1;
-                                        }} aria-label="Like image" icon={faHeart} />
+                                        }} aria-label="Like image" icon={faHeart}/>
                                     </div>
                                 </div>
                             </div>
                         )
                     })}
-                    <div className={"photographer-stats"} style={imagesModal ? {display:"none"} : {display:"flex", width:"20%",borderRadius:4, padding:10, alignItems:"center",height:40, backgroundColor:"#D3573C"}}>
-                        <p style={{flex:1}}>{imgNumberOfLikes}<FontAwesomeIcon style={{marginLeft:5}} icon={faHeart} /></p>
+                    <div className={"photographer-stats"} style={imagesModal ? {display: "none"} : {
+                        display: "flex",
+                        width: "20%",
+                        borderRadius: 4,
+                        padding: 10,
+                        alignItems: "center",
+                        height: 40,
+                        backgroundColor: "#D3573C"
+                    }}>
+                        <p style={{flex: 1}}>{imgNumberOfLikes}<FontAwesomeIcon style={{marginLeft: 5}} icon={faHeart}/>
+                        </p>
                         <p>{photographerInformation.price}€ / jour</p>
                     </div>
                 </div>

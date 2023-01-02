@@ -6,6 +6,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    user-select: none;
+}
+
+.modalBackground > * {
+    user-select: none;
 }
 
 form input {
@@ -35,14 +40,14 @@ p {
 }
 
 .closeModalButton {
-    height:45px;
+    height: 45px;
     color: white;
     cursor: pointer;
 }
 
 .modalContainer .title {
     display: flex;
-    color: black!important;
+    color: black !important;
 }
 
 .titleCloseBtn {

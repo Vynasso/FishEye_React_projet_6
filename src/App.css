@@ -1,0 +1,5 @@
+body.modal-open {
+    overflow: hidden;
+    max-height: 100vh;
+    padding-right: 17px;
+}

@@ -27,7 +27,7 @@ export default function Homepage() {
                 {photographersInformation.map((photographer) => {
                     return (
                         <div key={photographer.id} className={"photographe-container"}>
-                            <Link to={`/photographerPage${photographer.id}`} >
+                            <Link to={`/photographerPage${photographer.id}`}>
                                 <img className={"photographer-image"}
                                      src={`/PhotographersIdPhotos/${photographer.portrait}`} alt="photographe picture"/>
                                 <h2 className={"photographer-name"}>{photographer.name}</h2>
