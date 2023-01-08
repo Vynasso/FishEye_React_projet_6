@@ -111,7 +111,10 @@ export default function PhotographerPage() {
                     setOpenImagesModal={toggleImageModal}
                     photographerName={photographerInformation.name}
                     allImages={photographersImage}
-                    image={imagePicked}
+                    media={{
+                        ...imagePicked,
+                        url: imagePicked.image || imagePicked.video
+                    }}
                 />}
 
 
@@ -165,13 +168,16 @@ export default function PhotographerPage() {
                 {/*                <li className="menu-item">*/}
                 {/*                    <button onClick={() => sortByTitle(photographersImage)}
                                             className={"sort-button"}>Titre
-                                    </button>*/}
+                                    </button>*/}s
                 {/*                </li>*/}
                 {/*            </ul>*/}
                 {/*        ) : null}*/}
                 {/*    </div>*/}
                 {/*</div>*/}
-                <div style={{display: 'inline-block'}}>
+                <div style={{display: 'inline-block'}}
+                     onMouseEnter={() => setDisplayMenu(true)}
+                     onMouseLeave={() => setDisplayMenu(false)}
+                >
                     <div
                         style={{
                             cursor: 'pointer',
@@ -257,20 +263,25 @@ export default function PhotographerPage() {
                         return (
                             <div className={"unique-image-container"} key={image.id}>
                                 {image?.image?.includes("jpg") ? (
-                                        <>
-                                            <a onClick={() => {
-                                                toggleImageModal();
-                                                setImagePicked(image.image)
-                                            }}>
-                                                <img className={"image"}
-                                                     src={`/SamplePhotos/${photographerInformation.name}/${image.image}`}
-                                                     aria-label={image.title} alt="image"/>
-                                            </a>
-                                        </>
+                                        <a onClick={() => {
+                                            toggleImageModal();
+                                            setImagePicked(image)
+                                        }}>
+                                            <img className={"image"}
+                                                 src={`/SamplePhotos/${photographerInformation.name}/${image.image}`}
+                                                 aria-label={image.title} alt="image"/>
+                                        </a>
+
                                     ) :
-                                    <video className={"image"}
-                                           src={`/SamplePhotos/${photographerInformation.name}/${image?.video}`}
-                                           aria-label={image.title} type="video/mp4"/>
+                                    <a onClick={() => {
+                                        toggleImageModal();
+                                        setImagePicked(image)
+                                    }}>
+                                        <video className={"image"}
+                                               src={`/SamplePhotos/${photographerInformation.name}/${image?.video}`}
+                                               aria-label={image.title} type="video/mp4"/>
+                                    </a>
+
                                 }
                                 <div className={"image-information"}>
                                     <p className={"image-title"}>{image.title}</p>
