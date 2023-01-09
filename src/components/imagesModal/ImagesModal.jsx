@@ -29,7 +29,7 @@ function ImagesModal({setOpenImagesModal, photographerName, media, allImages}) {
     };
 
     return (
-        <div className="modalBackground" aria-label="Image modal">
+        <div className="modalBackground" aria-label="Image closeup view">
             <div className="imageModalContainer">
                 <div className={"close-button-wrapper"}>
                     <FontAwesomeIcon onClick={() => {
@@ -44,7 +44,7 @@ function ImagesModal({setOpenImagesModal, photographerName, media, allImages}) {
                                      style={{fontSize: 40, paddingLeft: 20, color: "#901C1C", cursor: "pointer"}}
                                      onClick={handlePrevImage} aria-label="Previous image" icon={faChevronLeft}/>
                     {image && (
-                        <img className={"modal-image"}
+                        <img className={"modal-image"} aria-label={"Lilac breasted roller"}
                              src={`/SamplePhotos/${photographerName}/${image}`} alt="image"/>
                     )}
                     {video && (

@@ -20,13 +20,13 @@ export default function Homepage() {
     return (
         <>
             <header>
-                <img src={"logo.png"} alt="logo" className="logo"/>
+                <img src={"logo.png"} alt="Fisheye Home page" aria-label={"Fisheye Home page"} className="logo"/>
                 <h1 className={"photographer-list"}>Nos photographes</h1>
             </header>
             <main className={"photographer-section"}>
                 {photographersInformation.map((photographer) => {
                     return (
-                        <div key={photographer.id} className={"photographe-container"}>
+                        <div key={photographer.id} aria-label={photographer.name} className={"photographe-container"}>
                             <Link to={`/photographerPage${photographer.id}`}>
                                 <img className={"photographer-image"}
                                      src={`/PhotographersIdPhotos/${photographer.portrait}`} alt="photographe picture"/>

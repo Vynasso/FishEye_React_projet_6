@@ -104,7 +104,7 @@ export default function PhotographerPage() {
                 <ContactModal
                     photographerName={photographerInformation.name}
                     setOpenModal={toggleModal}
-                    aria-label="Contact form for photographer"
+                    aria-label="Contact Me"
                 />}
             {imagesModal &&
                 <ImagesModal
@@ -120,7 +120,7 @@ export default function PhotographerPage() {
 
             <header>
                 <a href="/">
-                    <img src={"logo.png"} alt="logo" className="logo"/>
+                    <img src={"logo.png"} alt="Fisheye Home page" aria-label={"Fisheye Home page"} className="logo"/>
                 </a>
             </header>
             <div className={"photographer-wrapper"}>
@@ -132,7 +132,7 @@ export default function PhotographerPage() {
                             <p className={"tagline"}>{photographerInformation.label}</p>
                         </div>
                     </div>
-                    <div className={"photographer-button-container"}>
+                    <div aria-label="Contact Me" className={"photographer-button-container"}>
                         <button onClick={() => {
                             toggleModal()
                         }}
@@ -141,6 +141,7 @@ export default function PhotographerPage() {
                     </div>
                     <div>
                         <img className={"photographer-image-container"}
+                             aria-label={photographerInformation.name}
                              src={`/PhotographersIdPhotos/${photographerInformation.portrait}`}
                              alt=""/>'
                     </div>
@@ -150,30 +151,6 @@ export default function PhotographerPage() {
                     </>
                     : null
                 }
-                {/*<div style={imagesModal ? {display: "none"} : {display: "flex"}} className={"selector-wrapper"}>*/}
-                {/*    <p style={{marginRight: 15, marginTop: 15}}>Trier par:</p>*/}
-                {/*    <div className={"dropdown"} onClick={handleOpenSortMenu}
-                         aria-label="Open dropdown menu for sorting images"
-                         title="Sort images by popularity, date, or title">*/}
-                {/*        <button className={"sort-button"}
-                                onClick={() => sortByPopularity(photographersImage)}>Popularité <FontAwesomeIcon
-                            icon={faChevronUp}/></button>*/}
-                {/*        {openDropDownMenu ? (*/}
-                {/*            <ul className="menu">*/}
-                {/*                <li className="menu-item">*/}
-                {/*                    <button onClick={() => sortByDate(photographersImage)}
-                                            className={"sort-button"}>Date
-                                    </button>*/}
-                {/*                </li>*/}
-                {/*                <li className="menu-item">*/}
-                {/*                    <button onClick={() => sortByTitle(photographersImage)}
-                                            className={"sort-button"}>Titre
-                                    </button>*/}s
-                {/*                </li>*/}
-                {/*            </ul>*/}
-                {/*        ) : null}*/}
-                {/*    </div>*/}
-                {/*</div>*/}
                 <div style={{display: 'inline-block'}}
                      onMouseEnter={() => setDisplayMenu(true)}
                      onMouseLeave={() => setDisplayMenu(false)}
@@ -195,8 +172,6 @@ export default function PhotographerPage() {
                         <ul
                             style={{
                                 position: 'absolute',
-                                // top: '40px',
-                                // left: '0',
                                 top: "438px",
                                 left: "165px",
                                 backgroundColor: '#901C1C',
@@ -290,7 +265,7 @@ export default function PhotographerPage() {
                                         <FontAwesomeIcon onClick={() => {
                                             setImgNumberOfLikes(imgNumberOfLikes + 1);
                                             image.likes += 1;
-                                        }} aria-label="Like image" icon={faHeart}/>
+                                        }} aria-label="Likes" icon={faHeart}/>
                                     </div>
                                 </div>
                             </div>

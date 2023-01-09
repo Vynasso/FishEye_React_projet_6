@@ -10,7 +10,7 @@ function ContactModal({setOpenModal, photographerName}) {
     const [message, setMessage] = useState("");
 
     return (
-        <div className="modalBackground">
+        <div className="modalBackground" aria-label={"Contact me " + photographerName}>
             <div className="modalContainer">
                 <div className="title">
                     <h1 className={"contact-me"} style={{color: "black"}}>Contactez-moi {photographerName}</h1>
@@ -48,16 +48,8 @@ function ContactModal({setOpenModal, photographerName}) {
                             required
                         />
                         <p>Message</p>
-                        {/*<input*/}
-                        {/*    style={{height:150}}*/}
-                        {/*    value={password}*/}
-                        {/*    onChange={e => setPassword(e.target.value)}*/}
-                        {/*    type="text"*/}
-                        {/*    name="Message"*/}
-                        {/*    aria-label="Message"*/}
-                        {/*    required*/}
-                        {/*/>*/}
                         <textarea
+                            aria-label={"Your message"}
                             style={{height: 150, width: "100%", borderRadius: 4}}
                             value={message}
                             onChange={e => setMessage(e.target.value)}
@@ -69,7 +61,7 @@ function ContactModal({setOpenModal, photographerName}) {
                 </div>
                 <div className="footer">
                     <button
-                        aria-label="Send message"
+                        aria-label="Send"
                         onClick={() => {
                             setOpenModal(false);
                         }} id="sendMessage">
